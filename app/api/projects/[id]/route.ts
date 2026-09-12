@@ -3,9 +3,10 @@ import { getProjectById } from "@/lib/projects-db";
 
 export async function GET(
   request: Request,
-  context: { params: { id: string } }
+  context: { params: Promise<{ id: string }> }
 ) {
-  const id = Number(context.params.id);
+  const { id: rawId } = await context.params;
+  const id = Number(rawId);
 
   // If id is not a number, return 400
   if (isNaN(id)) {

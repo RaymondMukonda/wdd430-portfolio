@@ -3,9 +3,9 @@ import { getProjectById } from "@/lib/projects-db";
 
 export async function GET(
   request: Request,
-  { params }: { params: { id: string } }
+  context: { params: { id: string } }
 ) {
-  const id = Number(params.id);
+  const id = Number(context.params.id);
 
   // If id is not a number, return 400
   if (isNaN(id)) {

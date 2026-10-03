@@ -1,17 +1,22 @@
-"use client"; 
+"use client";
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { signOut } from "next-auth/react";
 
-const links = [
-  { href: "/", label: "Home" },
-  { href: "/about", label: "About" },
-  { href: "/projects", label: "Projects" },
-  { href: "/contact", label: "Contact" },
-];
-
-export default function NavLinks() {
+export default function NavLinks({
+  isAuthenticated,
+}: {
+  isAuthenticated: boolean;
+}) {
   const pathname = usePathname();
+
+  const links = [
+    { href: "/", label: "Home" },
+    { href: "/about", label: "About" },
+    { href: "/projects", label: "Projects" },
+    { href: "/contact", label: "Contact" },
+  ];
 
   return (
     <ul className="flex gap-6">
@@ -33,6 +38,32 @@ export default function NavLinks() {
           </li>
         );
       })}
+
+      {!isAuthenticated && (
+        <li>
+          <Link href="/login" className="text-white hover:text-yellow-200">
+            Login
+          </Link>
+        </li>
+      )}
+
+      {isAuthenticated && (
+        <>
+          <li>
+            <Link href="/dashboard" className="text-white hover:text-yellow-200">
+              Dashboard
+            </Link>
+          </li>
+          <li>
+            <button
+              onClick={() => signOut({ callbackUrl: "/" })}
+              className="text-white hover:text-yellow-200"
+            >
+              Logout
+            </button>
+          </li>
+        </>
+      )}
     </ul>
   );
 }

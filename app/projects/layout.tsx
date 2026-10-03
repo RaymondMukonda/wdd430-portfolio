@@ -1,4 +1,10 @@
 import Link from "next/link";
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Projects',
+  description: 'Browse web development, school, and open-source projects by Raymond Mukonda.',
+};
 
 export default function ProjectsLayout({
   children,
@@ -11,9 +17,6 @@ export default function ProjectsLayout({
         <ul className="flex gap-4">
           <li>
             <Link href="/projects">Projects Home</Link>
-          </li>
-          <li>
-            <Link href="/projects/settings">Settings</Link>
           </li>
         </ul>
       </nav>

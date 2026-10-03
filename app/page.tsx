@@ -1,4 +1,11 @@
 import ProjectList from '@/components/ProjectList';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: { absolute: 'Raymond Mukonda | Project Portfolio' },
+  description:
+    'Selected web development projects by Raymond Mukonda, including full-stack, React, and software work.',
+};
 
 const projects = [
   {

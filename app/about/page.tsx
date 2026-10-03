@@ -1,4 +1,10 @@
 import SkillCard from "../../components/SkillCard";
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'About',
+  description: 'Learn about Raymond Mukonda’s background and web development work.',
+};
 
 export default function About() {
   return (
